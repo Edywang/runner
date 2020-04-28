@@ -12,14 +12,42 @@ class Menu extends Phaser.Scene {
     preload() {
         //520 x 180 Start Button
         this.load.image('start','./assets/Start.png');
+        //580 x 180 Credits Button
+        this.load.image('credits','./assets/Credits.png');
     }
     create(){
-        //Button
+        //Start Button
         var button = this.add.sprite(190,200,`start`).setScale(0.5,0.5).setOrigin(0,0).setInteractive();
-        button.on('pointerover',this.over);
-        button.on('pointerout',this.out);
-        button.on('pointerup',this.up,this);
+        //Mouse Hover Button
+        button.on('pointerover',function(){
+            console.log('button over');
+        });
+        //Mouse Leaves Button
+        button.on('pointerout',function(){
+            console.log('button out');
+        });
+        //Mouse Clicks Button
+        button.on('pointerup',function(){
+            console.log('changed scene');
+            this.scene.start("cutScene");
+        },this);
 
+
+        //Credits Button
+        var button2 = this.add.sprite(175,300,`credits`).setScale(0.5,0.5).setOrigin(0,0).setInteractive();
+        //Mouse Hover Button
+        button2.on('pointerover',function(){
+            console.log('button over');
+        });
+        //Mouse Leaves Button
+        button2.on('pointerout',function(){
+            console.log('button out');
+        });
+        //Mouse Clicks Button
+        button2.on('pointerup',function(){
+            console.log('changed scene');
+            this.scene.start("creditsScene");
+        },this);
         // Define keyboard keys
         //keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         //keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
@@ -50,19 +78,5 @@ class Menu extends Phaser.Scene {
             this.sound.play('sfx_select');
             this.scene.start('playScene');
         } */
-    }
-
-    //If mouse clicks button
-    up() {
-        console.log('changed scene')
-        this.scene.start("playScene");
-    }
-    //If mouse hovers button (animation?)
-    over() {
-        console.log('button over');
-    }
-    //If mouse leaves button (animation?)
-    out() {
-        console.log('button out');
     }
 }
