@@ -15,6 +15,7 @@ class Menu extends Phaser.Scene {
         //580 x 180 Credits Button
         this.load.image('credits','./assets/Credits.png');
     }
+    
     create(){
         //Start Button
         var button = this.add.sprite(190,200,`start`).setScale(0.5,0.5).setOrigin(0,0).setInteractive();
