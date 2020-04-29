@@ -16,7 +16,7 @@ let config = {
     type: Phaser.CANVAS,
     width: 640, // TODO: We might want to change this
     height: 480, // TODO: We might want to change this
-    scene: [Menu,Play,Credits,Cutscene],
+    scene: [Menu,Play,Credits,Cutscene,Death],
 };
 // Starting the Phaser game with the object config as a param
 let game = new Phaser.Game(config);
