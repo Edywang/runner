@@ -10,15 +10,15 @@ class Menu extends Phaser.Scene {
     }
 
     preload() {
-        //520 x 180 Start Button
+        //580 x 220 Start Button
         this.load.image('start','./assets/Start.png');
-        //580 x 180 Credits Button
+        //580 x 220 Credits Button
         this.load.image('credits','./assets/Credits.png');
     }
     
     create(){
         //Start Button
-        var button = this.add.sprite(190,200,`start`).setScale(0.5,0.5).setOrigin(0,0).setInteractive();
+        var button = this.add.sprite(175,200,`start`).setScale(0.5,0.5).setOrigin(0,0).setInteractive();
         //Mouse Hover Button
         button.on('pointerover',function(){
             console.log('button over');
@@ -49,6 +49,7 @@ class Menu extends Phaser.Scene {
             console.log('changed scene');
             this.scene.start("creditsScene");
         },this);
+        
         // Define keyboard keys
         //keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         //keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);

@@ -1,15 +1,15 @@
-class Credits extends Phaser.Scene {
+class Death extends Phaser.Scene {
     constructor(){
-        super("creditsScene");
+        super("deathScene");
     }
 
     preload() {
-        //580 x 220 Back Button
-        this.load.image('back','./assets/Back.png');
+        //580 x 220 Play Again Button
+        this.load.image('playagain','./assets/playagain.png');
     }
     create(){
-        //Back Button
-        var button = this.add.sprite(175,300,`back`).setScale(0.5,0.5).setOrigin(0,0).setInteractive();
+        //Play Again Button
+        var button = this.add.sprite(175,300,`playagain`).setScale(0.5,0.5).setOrigin(0,0).setInteractive();
         //Mouse Hover Button
         button.on('pointerover',function(){
             console.log('button over');
@@ -21,7 +21,7 @@ class Credits extends Phaser.Scene {
         //Mouse Clicks Button
         button.on('pointerup',function(){
             console.log('changed scene');
-            this.scene.start("menuScene");
+            this.scene.start("cutScene");
         },this);
     }
     update() {
