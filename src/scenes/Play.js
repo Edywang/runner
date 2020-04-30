@@ -110,7 +110,7 @@ class Play extends Phaser.Scene{
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         //Speed of 10m/s
-        //this.time.delayedCall(100, this.distanceIncrease, [], this);
+        this.time.delayedCall(100, this.distanceIncrease, [], this);
     }
 
     update(){
@@ -119,7 +119,7 @@ class Play extends Phaser.Scene{
         }
         else{
             //Distance
-            console.log(this.distance);
+            //console.log(this.distance);
             //Scroll Background
             //this.starfield.tilePositionX -= 4;
             //Player
