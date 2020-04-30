@@ -1,25 +1,22 @@
 // Rocket Prefab
-class Rocket extends Phaser.GameObjects.Sprite{
+class Football extends Phaser.GameObjects.Sprite{
     constructor(scene, x, y, texture, frame){
         super(scene, x, y, texture, frame);
         // Add this object to existing scene
         scene.add.existing(this); // Add to existing, displayList, updateList
-        this.isFiring = false;    // Track rocket's firing status
-        this.sfxRocket = scene.sound.add('sfx_rocket'); // Add rocket SFX
+        //this.isFiring = false;    // Track rocket's firing status
+        //this.sfxRocket = scene.sound.add('sfx_rocket'); // Add rocket SFX
     }
     
     update(){
-        // Left/Right Movement
-        if(!this.isFiring){
-            if(keyLEFT.isDown && this.x >= 47){
-                this.x -= 2;
-            }
-            else if(keyRIGHT.isDown && this.x <= 320){
-                this.x += 2;
-            }
+        if(keyUP.isDown && this.y > 0 + 20){
+            this.y -= 5;
+        }
+        else if(keyDOWN.isDown && this.y < 480 - 758/20 - 20){
+            this.y += 5;
         }
 
-        // Fire button
+        /*// Fire button
         if(Phaser.Input.Keyboard.JustDown(keyF) && !this.isFiring){
             this.isFiring = true;
             this.sfxRocket.play();
@@ -33,11 +30,11 @@ class Rocket extends Phaser.GameObjects.Sprite{
         // Reset on miss
         if(this.y <= 108) {
             this.reset();
-        }
+        }*/
     }
 
     reset(){
-        this.isFiring = false;
-        this.y = 431;
+        //this.isFiring = false;
+        //this.y = 431;
     }
 }

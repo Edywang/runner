@@ -95,9 +95,20 @@ class Play extends Phaser.Scene{
         this.creditLink.setVisible(false);
 
         game.music.play(); */
+        this.footballPlayer = new Football(this,50,480/2 - 758/40,'football').setScale(0.05, 0.05).setOrigin(0, 0);
+
+        this.gameOver = false;
+        keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
     }
 
     update(){
+        if(this.gameOver){
+            //Restart stuff
+        }
+        else{
+            this.footballPlayer.update();
+        }
         /* Check key input for restart
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyF)){
             this.restartGame();

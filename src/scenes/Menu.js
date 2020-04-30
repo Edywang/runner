@@ -50,6 +50,8 @@ class Menu extends Phaser.Scene {
             this.scene.start("creditsScene");
         },this);
         
+        //Start shortcut
+        keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
         // Define keyboard keys
         //keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         //keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
@@ -61,8 +63,11 @@ class Menu extends Phaser.Scene {
         //game.music.setLoop(true);
     }
 
-    update() { /*
-        if(Phaser.Input.Keyboard.JustDown(keyLEFT)){
+    update() { 
+        if(Phaser.Input.Keyboard.JustDown(keyENTER)){
+            this.scene.start("cutScene");
+        }
+        /*if(Phaser.Input.Keyboard.JustDown(keyLEFT)){
             // Easy mode
             game.settings = {
                 spaceshipSpeed: 3,

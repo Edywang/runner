@@ -22,4 +22,4 @@ let config = {
 let game = new Phaser.Game(config);
 
 // Reserve some keyboard variables
-let keyLEFT, keyRIGHT, keyUP, keyDOWN;
+let keyUP, keyDOWN, keyENTER;
