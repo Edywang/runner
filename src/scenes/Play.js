@@ -95,11 +95,22 @@ class Play extends Phaser.Scene{
         this.creditLink.setVisible(false);
 
         game.music.play(); */
-        this.footballPlayer = new Football(this,50,480/2 - 758/40,'football').setScale(0.05, 0.05).setOrigin(0, 0);
+        //Player
+        this.footballPlayer = new Football(this,50,480/2 - 758/40,'football',0).setScale(0.05, 0.05).setOrigin(0, 0);
+        //Enemy
+        this.sanicEnemy = new Sanic(this,1150,100,'football',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
+        this.treeEnemy = new Tree(this,1250,100,'football',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
+        this.birdEnemy = new Bird(this,1350,100,'football',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
+        //Bonus
+        this.portalBonus = new Portal(this,1150,200,'football',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
+        this.goalpostBonus = new Goalpost(this,1250,200,'football',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
 
+        this.distance = 0;
         this.gameOver = false;
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+        //Speed of 10m/s
+        //this.time.delayedCall(100, this.distanceIncrease, [], this);
     }
 
     update(){
@@ -107,7 +118,36 @@ class Play extends Phaser.Scene{
             //Restart stuff
         }
         else{
+            //Distance
+            console.log(this.distance);
+            //Scroll Background
+            //this.starfield.tilePositionX -= 4;
+            //Player
             this.footballPlayer.update();
+            //Enemy
+            this.sanicEnemy.update();
+            this.treeEnemy.update();
+            this.birdEnemy.update();
+            //Bonus
+            this.portalBonus.update();
+            this.goalpostBonus.update();
+            //Enemy
+            if(this.checkCollision(this.footballPlayer,this.sanicEnemy)){
+                this.gameOver = true;
+            }
+            if(this.checkCollision(this.footballPlayer,this.treeEnemy)){
+                this.gameOver = true;
+            }
+            if(this.checkCollision(this.footballPlayer,this.birdEnemy)){
+                this.gameOver = true;
+            }
+            //Bonus
+            if(this.checkCollision(this.footballPlayer,this.portalBonus)){
+                
+            }
+            if(this.checkCollision(this.footballPlayer,this.goalpostBonus)){
+                
+            }
         }
         /* Check key input for restart
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyF)){
@@ -170,19 +210,26 @@ class Play extends Phaser.Scene{
             this.endGame();
         } */
     }
-    /*
-    checkCollision(rocket, ship) {
-        // simple AABB checking
-        if (rocket.x < ship.x + ship.width && 
-            rocket.x + rocket.width > ship.x && 
-            rocket.y < ship.y + ship.height &&
-            rocket.height + rocket.y > ship.y) {
+    
+    checkCollision(player,other){
+
+        //console.log(other.x);
+        //collision
+        if(player.x < other.x + other.width*other.scale && 
+            player.x + player.width*player.scale > other.x &&
+            player.y < other.y + other.height*other.scale &&
+            player.height*player.scale + player.y > other.y){
                 return true;
-        } else {
+        }
+        else{
             return false;
         }
     }
-
+    distanceIncrease(){
+        this.distance++;
+        this.time.delayedCall(100, this.distanceIncrease, [], this);
+    }
+    /*
     shipExplode(ship) {
         ship.alpha = 0; // Temporarily hiding the ship
         // Create the explosion sprite at the ship's position

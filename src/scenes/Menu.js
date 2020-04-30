@@ -52,12 +52,6 @@ class Menu extends Phaser.Scene {
         
         //Start shortcut
         keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
-        // Define keyboard keys
-        //keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        //keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-
-        // Change scenes
-        // this.scene.start("playScene");
         
         //game.music = this.sound.add('bg_music');
         //game.music.setLoop(true);
@@ -67,23 +61,5 @@ class Menu extends Phaser.Scene {
         if(Phaser.Input.Keyboard.JustDown(keyENTER)){
             this.scene.start("cutScene");
         }
-        /*if(Phaser.Input.Keyboard.JustDown(keyLEFT)){
-            // Easy mode
-            game.settings = {
-                spaceshipSpeed: 3,
-                gameTimer: 60
-            }
-            this.sound.play('sfx_select');
-            this.scene.start('playScene');
-        }
-        else if(Phaser.Input.Keyboard.JustDown(keyRIGHT)){
-            // Hard mode
-            game.settings = {
-                spaceshipSpeed: 4,
-                gameTimer: 15
-            }
-            this.sound.play('sfx_select');
-            this.scene.start('playScene');
-        } */
     }
 }

@@ -8,6 +8,8 @@ class Cutscene extends Phaser.Scene {
         this.load.image('football', './assets/footballfullres.png');
     }
     create(){
+        //Animation Required
+        //Starts the next scene
         this.scene.start("playScene");
     }
     update() {
