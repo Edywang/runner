@@ -14,11 +14,11 @@ class Death extends Phaser.Scene {
         var button = this.add.sprite(175,260,`playagain`).setScale(0.5,0.5).setOrigin(0,0).setInteractive();
         //Mouse Hover Button
         button.on('pointerover',function(){
-            console.log('button over');
+            // console.log('button over');
         });
         //Mouse Leaves Button
         button.on('pointerout',function(){
-            console.log('button out');
+            // console.log('button out');
         });
         //Mouse Clicks Button
         button.on('pointerup',function(){
@@ -30,11 +30,11 @@ class Death extends Phaser.Scene {
         var button = this.add.sprite(175,370,`menu`).setScale(0.5,0.5).setOrigin(0,0).setInteractive();
         //Mouse Hover Button
         button.on('pointerover',function(){
-            console.log('button over');
+            // console.log('button over');
         });
         //Mouse Leaves Button
         button.on('pointerout',function(){
-            console.log('button out');
+            // console.log('button out');
         });
         //Mouse Clicks Button
         button.on('pointerup',function(){
