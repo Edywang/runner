@@ -115,6 +115,7 @@ class Play extends Phaser.Scene{
 
     update(){
         if(this.gameOver){
+            this.scene.start("deathScene");
             //Restart stuff
         }
         else{
