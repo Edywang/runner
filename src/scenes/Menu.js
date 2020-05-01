@@ -21,14 +21,12 @@ class Menu extends Phaser.Scene {
         let textConfig = {
             fontFamily: 'Courier',
             fontSize: '14px',
-            //backgroundColor: '#F3B141',
             color: '#ffffff',
             align: 'right',
             padding: {
                 top: 5,
                 bottom: 5,
             },
-            //fixedWidth: 100
         }
         this.scoreLeft = this.add.text(180, 180, 'Press ↑ to go up and ↓ to go down', textConfig);
         //Start Button
