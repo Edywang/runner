@@ -13,9 +13,10 @@ class Sanic extends Phaser.GameObjects.Sprite{
         //Wraparound
         if(this.x <= 0 - this.width){
             this.x = game.config.width + Math.random() * 1000;
-            this.y = game.config.height - (Math.random() * game.config.height);
+            this.y = Math.random() * (game.config.height - this.height - 20) + 10;
             //Change speed
             //this.speed = Math.random()*10;
         }
+    
     }
 }

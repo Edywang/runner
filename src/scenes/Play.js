@@ -71,11 +71,11 @@ class Play extends Phaser.Scene{
 
         //Enemy
         // this.sanicEnemy = new Sanic(this,1150,100,'sanic',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
-        this.treeEnemy = new Tree(this, game.config.width + Math.random() * 1000, game.config.height - (Math.random() * game.config.height),'tree',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
-        this.birdEnemy = new Bird(this, game.config.width + Math.random() * 1000, game.config.height - (Math.random() * game.config.height),'bird',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
+        this.treeEnemy = new Tree(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-200)) + 100,'tree',0,10).setScale(0.5, 0.5).setOrigin(0, 0);
+        this.birdEnemy = new Bird(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-200)) + 100,'bird',0,10).setScale(0.5, 0.5).setOrigin(0, 0);
 
         //Bonus
-        this.portalBonus = new Portal(this, game.config.width + Math.random() * 1000, game.config.height - (Math.random() * game.config.height),'portal',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
+        this.portalBonus = new Portal(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-200)) + 100,'portal',0,10).setScale(0.5, 0.5).setOrigin(0, 0);
         // this.goalpostBonus = new Goalpost(this,1250,200,'goal',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
 
         // Keeping score in this variable
@@ -97,7 +97,7 @@ class Play extends Phaser.Scene{
             },
             fixedWidth: 100
         }
-        this.scoreLeft = this.add.text(69, 54, this.distance, scoreConfig);
+        this.scoreLeft = this.add.text(469, 54, this.distance, scoreConfig);
 
         //Speed of 10m/s
         this.delay = 100
@@ -133,7 +133,7 @@ class Play extends Phaser.Scene{
             //Bonus
             if(this.checkCollision(this.footballPlayer,this.portalBonus)){
                 console.log("Collision between football and portal detected")
-                this.portalBonus.x = 0;
+                this.portalBonus.x = -this.portalBonus.width;
                 this.distance += 10;
                 this.scoreLeft.text = this.distance;
             }
@@ -167,8 +167,8 @@ class Play extends Phaser.Scene{
 
     distanceIncrease(){
         this.distance++;
-        this.time.delayedCall(this.delay, this.distanceIncrease, [], this);
         this.scoreLeft.text = this.distance;
+        this.time.delayedCall(this.delay, this.distanceIncrease, [], this);
     }
 
     /*
