@@ -89,34 +89,51 @@ class Play extends Phaser.Scene{
         this.restartText = this.add.text(game.config.width/2, game.config.height/2 + 64, '(F)ire to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
         this.creditText = this.add.text(game.config.width/2, game.config.height/2 + 128, 'Background music by Kent Kercher', scoreConfig).setOrigin(0.5);
         this.creditLink = this.add.text(game.config.width/2, game.config.height/2 + 192, 'https://www.kentkercher.com/', scoreConfig).setOrigin(0.5);
-        this.gameOverText.setVisible(false);
-        this.restartText.setVisible(false);
-        this.creditText.setVisible(false);
-        this.creditLink.setVisible(false);
 
         game.music.play(); */
+
+        
+
         //Player
         this.footballPlayer = new Football(this,50,480/2 - 758/40,'football',0).setScale(0.05, 0.05).setOrigin(0, 0);
+
         //Enemy
         this.sanicEnemy = new Sanic(this,1150,100,'football',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
         this.treeEnemy = new Tree(this,1250,100,'football',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
         this.birdEnemy = new Bird(this,1350,100,'football',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
+
         //Bonus
         this.portalBonus = new Portal(this,1150,200,'football',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
         this.goalpostBonus = new Goalpost(this,1250,200,'football',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
 
+        // Keeping score in this variable
         this.distance = 0;
         this.gameOver = false;
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+        
+        // Displaying the score
+        let scoreConfig = {
+            fontFamily: 'Courier',
+            fontSize: '28px',
+            backgroundColor: '#F3B141',
+            color: '#843605',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100
+        }
+        this.scoreLeft = this.add.text(69, 54, this.distance, scoreConfig);
+
         //Speed of 10m/s
-        //this.time.delayedCall(100, this.distanceIncrease, [], this);
+        this.time.delayedCall(100, this.distanceIncrease, [], this);
     }
 
     update(){
         if(this.gameOver){
             this.scene.start("deathScene");
-            //Restart stuff
         }
         else{
             //Distance
@@ -229,6 +246,7 @@ class Play extends Phaser.Scene{
     distanceIncrease(){
         this.distance++;
         this.time.delayedCall(100, this.distanceIncrease, [], this);
+        this.scoreLeft.text = this.distance;
     }
     /*
     shipExplode(ship) {
