@@ -5,9 +5,9 @@ class Death extends Phaser.Scene {
 
     preload() {
         //580 x 220 Play Again Button
-        this.load.image('playagain','./assets/playagain.png');
+        this.load.image('playagain','./assets/PlayAgain.png');
         //580 x 220 Menu Button
-        this.load.image('menu','./assets/menu.png');
+        this.load.image('menu','./assets/Menu.png');
     }
     create(){
         //Play Again Button
