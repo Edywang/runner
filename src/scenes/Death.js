@@ -8,6 +8,8 @@ class Death extends Phaser.Scene {
         this.load.image('playagain','./assets/PlayAgain.png');
         //580 x 220 Menu Button
         this.load.image('menu','./assets/Menu.png');
+        this.load.audio('blip', 'assets/blip.wav');
+
     }
     create(){
         //Play Again Button
@@ -23,6 +25,7 @@ class Death extends Phaser.Scene {
         //Mouse Clicks Button
         button.on('pointerup',function(){
             console.log('changed scene');
+            this.sound.play('blip');
             this.scene.start("cutScene");
         },this);
 
@@ -39,6 +42,7 @@ class Death extends Phaser.Scene {
         //Mouse Clicks Button
         button.on('pointerup',function(){
             console.log('changed scene');
+            this.sound.play('blip');
             this.scene.start("menuScene");
         },this);
 

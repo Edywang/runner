@@ -8,15 +8,32 @@ class Menu extends Phaser.Scene {
     constructor(){
         super("menuScene");
     }
-//hi
     preload() {
         //580 x 220 Start Button
         this.load.image('start','./assets/Start.png');
         //580 x 220 Credits Button
         this.load.image('credits','./assets/Credits.png');
+        this.load.audio('bg_music', 'assets/bg_music.mp3');
+        this.load.audio('blip', 'assets/blip.wav');
     }
     
     create(){
+
+        // Displaying the Title
+        let titleConfig = {
+            fontFamily: 'Courier',
+            fontSize: '28px',
+            backgroundColor: '#000000',
+            color: '#FFFFFF',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+        }
+        this.title = this.add.text(320, 100, "Infinite Football", titleConfig);
+        this.title.x = 320 - this.title.width/2; 
+
         // Displaying the score
         let textConfig = {
             fontFamily: 'Courier',
@@ -33,15 +50,16 @@ class Menu extends Phaser.Scene {
         var button = this.add.sprite(175,200,`start`).setScale(0.5,0.5).setOrigin(0,0).setInteractive();
         //Mouse Hover Button
         button.on('pointerover',function(){
-            console.log('button over');
+            //console.log('button over');
         });
         //Mouse Leaves Button
         button.on('pointerout',function(){
-            console.log('button out');
+            //console.log('button out');
         });
         //Mouse Clicks Button
         button.on('pointerup',function(){
             console.log('changed scene');
+            this.sound.play('blip');
             this.scene.start("cutScene");
         },this);
 
@@ -50,27 +68,25 @@ class Menu extends Phaser.Scene {
         var button2 = this.add.sprite(175,300,`credits`).setScale(0.5,0.5).setOrigin(0,0).setInteractive();
         //Mouse Hover Button
         button2.on('pointerover',function(){
-            console.log('button over');
+            //console.log('button over');
         });
         //Mouse Leaves Button
         button2.on('pointerout',function(){
-            console.log('button out');
+            //console.log('button out');
         });
         //Mouse Clicks Button
         button2.on('pointerup',function(){
             console.log('changed scene');
+            this.sound.play('blip');
             this.scene.start("creditsScene");
         },this);
         
-        //Start shortcut
-        keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
-        //game.music = this.sound.add('bg_music');
-        //game.music.setLoop(true);
+        // bgm
+        game.music = this.sound.add('bg_music');
+        game.music.setLoop(true);
     }
 
     update() { 
-        if(Phaser.Input.Keyboard.JustDown(keyENTER)){
-            this.scene.start("cutScene");
-        }
+        
     }
 }

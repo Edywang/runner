@@ -12,7 +12,7 @@ class Portal extends Phaser.GameObjects.Sprite{
         this.x -= this.speed;
         //Wraparound
         if(this.x <= 0 - this.width){
-            this.x = game.config.width + Math.random() * 1000;
+            this.x = game.config.width +  2000 + Math.random() * 5000;
             this.y = Math.random() * (game.config.height - this.height - 20) + 10;
             //Change speed
             //this.speed = Math.random()*10;
