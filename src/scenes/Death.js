@@ -41,6 +41,8 @@ class Death extends Phaser.Scene {
             console.log('changed scene');
             this.scene.start("menuScene");
         },this);
+
+        this.scoreLeft = this.add.text(469, 54, distance, scoreConfig);
     }
     update() {
     }
