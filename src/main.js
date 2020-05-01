@@ -23,3 +23,18 @@ let game = new Phaser.Game(config);
 
 // Reserve some keyboard variables
 let keyUP, keyDOWN, keyENTER;
+
+//Score config
+let scoreConfig = {
+    fontFamily: 'Courier',
+    fontSize: '28px',
+    backgroundColor: '#F3B141',
+    color: '#843605',
+    align: 'right',
+    padding: {
+        top: 5,
+        bottom: 5,
+    },
+    fixedWidth: 100
+};
+let distance;

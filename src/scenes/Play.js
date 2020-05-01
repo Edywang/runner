@@ -71,33 +71,21 @@ class Play extends Phaser.Scene{
 
         //Enemy
         // this.sanicEnemy = new Sanic(this,1150,100,'sanic',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
-        this.treeEnemy = new Tree(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-200)) + 100,'tree',0,10).setScale(0.5, 0.5).setOrigin(0, 0);
-        this.birdEnemy = new Bird(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-200)) + 100,'bird',0,10).setScale(0.5, 0.5).setOrigin(0, 0);
+        this.treeEnemy = new Tree(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-300)) + 150,'tree',0,10).setScale(0.5, 0.5).setOrigin(0, 0);
+        this.birdEnemy = new Bird(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-300)) + 150,'bird',0,10).setScale(0.5, 0.5).setOrigin(0, 0);
 
         //Bonus
-        this.portalBonus = new Portal(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-200)) + 100,'portal',0,10).setScale(0.5, 0.5).setOrigin(0, 0);
+        this.portalBonus = new Portal(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-300)) + 150,'portal',0,10).setScale(0.5, 0.5).setOrigin(0, 0);
         // this.goalpostBonus = new Goalpost(this,1250,200,'goal',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
 
         // Keeping score in this variable
-        this.distance = 0;
+        distance = 0;
         this.gameOver = false;
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         
         // Displaying the score
-        let scoreConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
-            align: 'right',
-            padding: {
-                top: 5,
-                bottom: 5,
-            },
-            fixedWidth: 100
-        }
-        this.scoreLeft = this.add.text(469, 54, this.distance, scoreConfig);
+        this.scoreLeft = this.add.text(469, 54, distance, scoreConfig);
 
         //Speed of 10m/s
         this.delay = 100
@@ -110,7 +98,7 @@ class Play extends Phaser.Scene{
         }
         else{
             //Distance
-            // console.log(this.distance);
+            // console.log(distance);
             //Scroll Background
             //this.starfield.tilePositionX -= 4;
             //Player
@@ -134,8 +122,8 @@ class Play extends Phaser.Scene{
             if(this.checkCollision(this.footballPlayer,this.portalBonus)){
                 console.log("Collision between football and portal detected")
                 this.portalBonus.x = -this.portalBonus.width;
-                this.distance += 10;
-                this.scoreLeft.text = this.distance;
+                distance += 10;
+                this.scoreLeft.text = distance;
             }
             // if(this.checkCollision(this.footballPlayer,this.goalpostBonus)){ }
         }
@@ -166,8 +154,8 @@ class Play extends Phaser.Scene{
     }
 
     distanceIncrease(){
-        this.distance++;
-        this.scoreLeft.text = this.distance;
+        distance++;
+        this.scoreLeft.text = distance;
         this.time.delayedCall(this.delay, this.distanceIncrease, [], this);
     }
 
