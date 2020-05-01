@@ -76,11 +76,11 @@ class Play extends Phaser.Scene{
 
         //Enemy
         // this.sanicEnemy = new Sanic(this,1150,100,'sanic',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
-        this.treeEnemy = new Tree(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-300)) + 150,'tree',0,10).setScale(0.5, 0.5).setOrigin(0, 0);
-        this.birdEnemy = new Bird(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-300)) + 150,'bird',0,10).setScale(0.5, 0.5).setOrigin(0, 0);
+        this.treeEnemy = new Tree(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-300)) + 150,'tree',0, 5).setScale(0.5, 0.5).setOrigin(0, 0);
+        this.birdEnemy = new Bird(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-300)) + 150,'bird',0, 5).setScale(0.5, 0.5).setOrigin(0, 0);
 
         //Bonus
-        this.portalBonus = new Portal(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-300)) + 150,'portal',0,10).setScale(0.5, 0.5).setOrigin(0, 0);
+        this.portalBonus = new Portal(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-300)) + 150,'portal', 0, 5).setScale(0.5, 0.5).setOrigin(0, 0);
         // this.goalpostBonus = new Goalpost(this,1250,200,'goal',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
 
         // Keeping score in this variable
@@ -105,7 +105,7 @@ class Play extends Phaser.Scene{
             //Distance
             // console.log(distance);
             //Scroll Background
-            this.field.tilePositionX += 10;
+            this.field.tilePositionX += 1;
             //Player
             this.footballPlayer.update();
             //Enemy
@@ -132,15 +132,6 @@ class Play extends Phaser.Scene{
             }
             // if(this.checkCollision(this.footballPlayer,this.goalpostBonus)){ }
         }
-
-        /*
-        // Scroll starfield
-        this.starfield.tilePositionX -= 4;
-        // this.starfield.tilePositionY -= 4;
-        
-        if(game.settings.currentTimer <= 0){
-            this.endGame();
-        } */
     }
     
     checkCollision(player,other){
