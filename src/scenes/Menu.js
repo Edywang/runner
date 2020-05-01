@@ -8,7 +8,7 @@ class Menu extends Phaser.Scene {
     constructor(){
         super("menuScene");
     }
-
+//hi
     preload() {
         //580 x 220 Start Button
         this.load.image('start','./assets/Start.png');
