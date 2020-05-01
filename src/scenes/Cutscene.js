@@ -6,6 +6,7 @@ class Cutscene extends Phaser.Scene {
     preload() {
         // 1280x758 Football sprite (Transparent background)
         this.load.image('football', './assets/footballfullres.png');
+        
     }
     create(){
         //Animation Required
