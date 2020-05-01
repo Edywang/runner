@@ -12,8 +12,10 @@ class Play extends Phaser.Scene{
         // this.load.image('goal', './assets/goalposttrans.png');
         this.load.image('portal', './assets/portaltrans.png');
         this.load.image('tree', './assets/tree1trans.png');
-        this.load.image('bird', './assets/birdtrans.png');
+        this.load.atlas('bird','assets/bird.png', 'assets/bird.json');
+        this.load.image('bird', './assets/birdtrans1.png');
         this.load.image('background', './assets/Background.png');
+        this.load.audio('portalnoise','/assets/portal.wav');
     }
 
     create(){
@@ -65,22 +67,23 @@ class Play extends Phaser.Scene{
         game.settings.timeLeft = this.add.text(320, 54, game.settings.currentTimer, scoreConfig);
 
         scoreConfig.fixedWidth = 0;
+        */
 
-        game.music.play(); */
-
-        //Background
+        // background music
+        game.music.play(); 
+        // Background
         this.field = this.add.tileSprite(0,0,960,480,'background').setOrigin(0,0);
 
-        //Player
+        // Player
         this.footballPlayer = new Football(this,50,480/2 - 758/40,'football',0).setScale(0.05, 0.05).setOrigin(0, 0);
 
-        //Enemy
+        // Enemy
         // this.sanicEnemy = new Sanic(this,1150,100,'sanic',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
-        this.treeEnemy = new Tree(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-300)) + 150,'tree',0, 5).setScale(0.5, 0.5).setOrigin(0, 0);
-        this.birdEnemy = new Bird(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-300)) + 150,'bird',0, 5).setScale(0.5, 0.5).setOrigin(0, 0);
-
+        this.treeEnemy = new Tree(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-300)) + 150,'tree',0, 10).setScale(0.5, 0.5).setOrigin(0, 0);
+        this.birdEnemy = new Bird(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-300)) + 150,'bird',0, 10).setScale(0.5, 0.5).setOrigin(0, 0);
+        this.birdEnemy.play('everything');
         //Bonus
-        this.portalBonus = new Portal(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-300)) + 150,'portal', 0, 5).setScale(0.5, 0.5).setOrigin(0, 0);
+        this.portalBonus = new Portal(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-300)) + 150,'portal', 0, 10).setScale(0.5, 0.5).setOrigin(0, 0);
         // this.goalpostBonus = new Goalpost(this,1250,200,'goal',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
 
         // Keeping score in this variable
@@ -99,23 +102,24 @@ class Play extends Phaser.Scene{
 
     update(){
         if(this.gameOver){
+            game.music.pause();
             this.scene.start("deathScene");
         }
         else{
-            //Distance
+            // Distance
             // console.log(distance);
-            //Scroll Background
+            // Scroll Background
             this.field.tilePositionX += 1;
-            //Player
+            // Player
             this.footballPlayer.update();
-            //Enemy
+            // Enemy
             // this.sanicEnemy.update();
             this.treeEnemy.update();
             this.birdEnemy.update();
-            //Bonus
+            // Bonus
             this.portalBonus.update();
             // this.goalpostBonus.update();
-            //Enemy
+            // Enemy
             // if(this.checkCollision(this.footballPlayer,this.sanicEnemy)){ this.gameOver = true; }
             if(this.checkCollision(this.footballPlayer,this.treeEnemy)){
                 this.gameOver = true;
@@ -123,11 +127,15 @@ class Play extends Phaser.Scene{
             if(this.checkCollision(this.footballPlayer,this.birdEnemy)){
                 this.gameOver = true;
             }
-            //Bonus
+            // Bonus
             if(this.checkCollision(this.footballPlayer,this.portalBonus)){
                 console.log("Collision between football and portal detected")
                 this.portalBonus.x = -this.portalBonus.width;
-                distance += 10;
+                this.sound.play('portalnoise');
+                distance += 100;
+                this.field.tilePositionX += 100;
+                this.birdEnemy.x = -this.birdEnemy.width;
+                this.treeEnemy.x = -this.treeEnemy.width;
                 this.scoreLeft.text = distance;
             }
             // if(this.checkCollision(this.footballPlayer,this.goalpostBonus)){ }
@@ -136,8 +144,8 @@ class Play extends Phaser.Scene{
     
     checkCollision(player,other){
 
-        //console.log(other.x);
-        //collision
+        // console.log(other.x);
+        // collision
         if(player.x < other.x + other.width*other.scale && 
             player.x + player.width*player.scale > other.x &&
             player.y < other.y + other.height*other.scale &&

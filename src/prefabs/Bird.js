@@ -4,10 +4,14 @@ class Bird extends Phaser.GameObjects.Sprite{
         super(scene, x, y, texture, frame);
         // Add this object to existing scene
         scene.add.existing(this);
-        this.speed = speedValue;
+        this.speed = speedValue;   
+        game.anims.create({ key: 'everything', frames: game.anims.generateFrameNames('bird'), repeat: -1 });             
     }
     
     update(){
+        //animate
+        //game.anims.create({ key: 'everything', frames: game.anims.generateFrameNames('bird'), repeat: -1 });
+
         //Move Left
         this.x -= this.speed;
         //Wraparound
