@@ -17,6 +17,20 @@ class Menu extends Phaser.Scene {
     }
     
     create(){
+        // Displaying the score
+        let textConfig = {
+            fontFamily: 'Courier',
+            fontSize: '14px',
+            //backgroundColor: '#F3B141',
+            color: '#ffffff',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            //fixedWidth: 100
+        }
+        this.scoreLeft = this.add.text(180, 180, 'Press ↑ to go up and ↓ to go down', textConfig);
         //Start Button
         var button = this.add.sprite(175,200,`start`).setScale(0.5,0.5).setOrigin(0,0).setInteractive();
         //Mouse Hover Button
@@ -52,7 +66,6 @@ class Menu extends Phaser.Scene {
         
         //Start shortcut
         keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
-        
         //game.music = this.sound.add('bg_music');
         //game.music.setLoop(true);
     }
