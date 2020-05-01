@@ -6,12 +6,14 @@ class Play extends Phaser.Scene{
     preload(){
         // Load images/tile sprites
         // Preload an image for this called rocket located at ./assets/rocket.png 
+        // Tile Sprite
         // this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
         this.load.image('football', './assets/football.png');
         // this.load.image('goal', './assets/goalposttrans.png');
         this.load.image('portal', './assets/portaltrans.png');
         this.load.image('tree', './assets/tree1trans.png');
         this.load.image('bird', './assets/birdtrans.png');
+        this.load.image('background', './assets/Background.png');
     }
 
     create(){
@@ -66,6 +68,9 @@ class Play extends Phaser.Scene{
 
         game.music.play(); */
 
+        //Background
+        this.field = this.add.tileSprite(0,0,960,480,'background').setOrigin(0,0);
+
         //Player
         this.footballPlayer = new Football(this,50,480/2 - 758/40,'football',0).setScale(0.05, 0.05).setOrigin(0, 0);
 
@@ -100,7 +105,7 @@ class Play extends Phaser.Scene{
             //Distance
             // console.log(distance);
             //Scroll Background
-            //this.starfield.tilePositionX -= 4;
+            this.field.tilePositionX += 10;
             //Player
             this.footballPlayer.update();
             //Enemy
