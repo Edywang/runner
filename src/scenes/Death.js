@@ -8,7 +8,7 @@ class Death extends Phaser.Scene {
         this.load.image('playagain','./assets/PlayAgain.png');
         //580 x 220 Menu Button
         this.load.image('menu','./assets/Menu.png');
-        this.load.audio('blip', 'assets/blip.wav');
+        this.load.audio('blip', './assets/blip.wav');
 
     }
     create(){

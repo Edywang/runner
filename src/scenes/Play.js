@@ -12,10 +12,10 @@ class Play extends Phaser.Scene{
         // this.load.image('goal', './assets/goalposttrans.png');
         this.load.image('portal', './assets/portaltrans.png');
         this.load.image('tree', './assets/tree1trans.png');
-        this.load.atlas('bird','assets/bird.png', 'assets/bird.json');
+        this.load.atlas('bird','./assets/bird.png', './assets/bird.json');
         this.load.image('bird', './assets/birdtrans1.png');
         this.load.image('background', './assets/Background.png');
-        this.load.audio('portalnoise','/assets/portal.wav');
+        this.load.audio('portalnoise','./assets/portal.wav');
     }
 
     create(){

@@ -13,8 +13,8 @@ class Menu extends Phaser.Scene {
         this.load.image('start','./assets/Start.png');
         //580 x 220 Credits Button
         this.load.image('credits','./assets/Credits.png');
-        this.load.audio('bg_music', 'assets/bg_music.mp3');
-        this.load.audio('blip', 'assets/blip.wav');
+        this.load.audio('bg_music', './assets/bg_music.mp3');
+        this.load.audio('blip', './assets/blip.wav');
     }
     
     create(){
@@ -80,7 +80,7 @@ class Menu extends Phaser.Scene {
             this.sound.play('blip');
             this.scene.start("creditsScene");
         },this);
-        
+
         // bgm
         game.music = this.sound.add('bg_music');
         game.music.setLoop(true);
