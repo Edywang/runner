@@ -21,6 +21,7 @@ class Credits extends Phaser.Scene {
         //Mouse Clicks Button
         button.on('pointerup',function(){
             console.log('changed scene');
+            this.sound.play('blip');
             this.scene.start("menuScene");
         },this);
     }

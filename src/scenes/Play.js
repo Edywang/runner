@@ -93,6 +93,7 @@ class Play extends Phaser.Scene{
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
         
         // Displaying the score
+        this.scoreLeft = this.add.text(529, 54, 'yds', scoreConfig);
         this.scoreLeft = this.add.text(469, 54, distance, scoreConfig);
 
         //Speed of 10m/s
