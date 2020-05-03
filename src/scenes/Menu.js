@@ -18,7 +18,6 @@ class Menu extends Phaser.Scene {
     }
     
     create(){
-
         // Displaying the Title
         let titleConfig = {
             fontFamily: 'Courier',
