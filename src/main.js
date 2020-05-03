@@ -38,3 +38,4 @@ let scoreConfig = {
     fixedWidth: 100
 };
 let distance;
+let emitter;

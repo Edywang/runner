@@ -12,6 +12,20 @@ class Death extends Phaser.Scene {
 
     }
     create(){
+        let titleConfig = {
+            fontFamily: 'Courier',
+            fontSize: '56px',
+            backgroundColor: '#000000',
+            color: '#FFFFFF',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+        }
+        this.title = this.add.text(170, 100, "Game Over", titleConfig);
+        titleConfig.fontSize = '28px';
+        this.title2 = this.add.text(220, 200, "You Scored " + distance, titleConfig);
         //Play Again Button
         var button = this.add.sprite(175,260,`playagain`).setScale(0.5,0.5).setOrigin(0,0).setInteractive();
         //Mouse Hover Button
@@ -46,7 +60,7 @@ class Death extends Phaser.Scene {
             this.scene.start("menuScene");
         },this);
 
-        this.scoreLeft = this.add.text(469, 54, distance, scoreConfig);
+        //this.scoreLeft = this.add.text(469, 54, distance, scoreConfig);
     }
     update() {
     }
