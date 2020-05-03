@@ -16,6 +16,7 @@ class Play extends Phaser.Scene{
         this.load.image('bird', './assets/birdtrans1.png');
         this.load.image('background', './assets/Background.png');
         this.load.audio('portalnoise','./assets/portal.wav');
+        this.load.image('blue',"./assets/Particle.png")
     }
 
     create(){
@@ -86,6 +87,13 @@ class Play extends Phaser.Scene{
         this.portalBonus = new Portal(this, game.config.width + Math.random() * 1000, (Math.random() * (game.config.height-300)) + 150,'portal', 0, 10).setScale(0.5, 0.5).setOrigin(0, 0);
         // this.goalpostBonus = new Goalpost(this,1250,200,'goal',0,10).setScale(0.05, 0.05).setOrigin(0, 0);
 
+        //Particle
+        let particles = this.add.particles('blue');
+        emitter = particles.createEmitter();
+        emitter.setSpeed(200);
+        emitter.setBlendMode(Phaser.BlendModes.ADD);
+        emitter.setPosition(this.portalBonus.x+40,this.portalBonus.y+70);
+
         // Keeping score in this variable
         distance = 0;
         this.gameOver = false;
@@ -119,6 +127,7 @@ class Play extends Phaser.Scene{
             this.birdEnemy.update();
             // Bonus
             this.portalBonus.update();
+            emitter.setPosition(this.portalBonus.x+40,this.portalBonus.y+70);
             // this.goalpostBonus.update();
             // Enemy
             // if(this.checkCollision(this.footballPlayer,this.sanicEnemy)){ this.gameOver = true; }

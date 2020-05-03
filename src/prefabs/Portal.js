@@ -6,7 +6,6 @@ class Portal extends Phaser.GameObjects.Sprite{
         scene.add.existing(this);
         this.speed = speedValue;
     }
-    
     update(){
         //Move Left
         this.x -= this.speed;
